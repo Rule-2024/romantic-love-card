@@ -1,0 +1,841 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-family: "Brush Script MT", "Lucida Handwriting", "Apple Chancery", cursive, sans-serif;
+    overflow-x: hidden; /* 隐藏水平滚动条 */
+  }
+}
+
+/* 隐藏滚动条但保持滚动功能 */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* 手写体字体类 */
+.font-handwriting {
+  font-family: "Brush Script MT", "Lucida Handwriting", "Apple Chancery", "Segoe Print", cursive, sans-serif;
+}
+
+.font-handwriting-bold {
+  font-family: "Brush Script MT", "Lucida Handwriting", "Apple Chancery", "Segoe Print", cursive, sans-serif;
+  font-weight: 600;
+}
+
+.font-handwriting-light {
+  font-family: "Brush Script MT", "Lucida Handwriting", "Apple Chancery", "Segoe Print", cursive, sans-serif;
+  font-weight: 400;
+}
+
+/* 文本换行优化 */
+.text-break-words {
+  word-break: keep-all;
+  word-wrap: break-word;
+  white-space: pre-line;
+  line-height: 1.6;
+}
+
+.text-no-break {
+  white-space: nowrap;
+}
+
+/* 避免中文单字换行 */
+.chinese-text {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  line-height: 1.7;
+}
+
+/* 温暖的背景效果 */
+.luxury-aurora {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, rgba(147, 51, 234, 0.1) 0%, transparent 70%);
+  animation: aurora-pulse 6s ease-in-out infinite;
+}
+
+.diamond-sparkles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(2px 2px at 20px 30px, #fbbf24, transparent),
+    radial-gradient(2px 2px at 40px 70px, #f59e0b, transparent),
+    radial-gradient(1px 1px at 90px 40px, #fbbf24, transparent),
+    radial-gradient(1px 1px at 130px 80px, #f59e0b, transparent),
+    radial-gradient(2px 2px at 160px 30px, #fbbf24, transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: sparkle-move 20s linear infinite;
+}
+
+.floating-petals {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(3px 3px at 50px 50px, rgba(244, 114, 182, 0.3), transparent),
+    radial-gradient(2px 2px at 150px 150px, rgba(236, 72, 153, 0.2), transparent),
+    radial-gradient(1px 1px at 250px 100px, rgba(244, 114, 182, 0.4), transparent);
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  animation: hearts-float 15s ease-in-out infinite;
+}
+
+/* 动画关键帧 */
+@keyframes aurora-pulse {
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.2;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes sparkle-move {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-100px);
+  }
+}
+
+@keyframes hearts-float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes gentle-heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* CURSOR: 改动：新增信封emoji的浮动动画；原因：为标题emoji添加浪漫的动态效果 */
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-3px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-3px) rotate(-1deg);
+  }
+}
+
+@keyframes diamond-twinkle {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes diamond-twinkle-delayed {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+@keyframes elegant-orbit {
+  0% {
+    transform: rotate(0deg) translateX(45px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(45px) rotate(-360deg);
+  }
+}
+
+@keyframes royal-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes luxury-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes luxury-spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes diamond-sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+@keyframes diamond-orbit {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+@keyframes luxury-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes luxury-glow {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes luxury-flip {
+  0% {
+    transform: rotateY(0deg) scale(1);
+  }
+  25% {
+    transform: rotateY(90deg) scale(0.8);
+  }
+  50% {
+    transform: rotateY(180deg) scale(0.9);
+  }
+  75% {
+    transform: rotateY(270deg) scale(0.8);
+  }
+  100% {
+    transform: rotateY(360deg) scale(1);
+  }
+}
+
+@keyframes luxury-heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes luxury-particle {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0);
+  }
+}
+
+@keyframes moonlight {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes royal-glow {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1) rotate(180deg);
+  }
+}
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 应用动画类 */
+.animate-petal-fall {
+  animation: petal-fall 12s ease-in-out infinite;
+}
+
+.animate-gentle-heartbeat {
+  animation: gentle-heartbeat 2.5s ease-in-out infinite;
+}
+
+.animate-diamond-twinkle {
+  animation: diamond-twinkle 2s ease-in-out infinite;
+}
+
+.animate-diamond-twinkle-delayed {
+  animation: diamond-twinkle-delayed 3s ease-in-out infinite;
+}
+
+.animate-elegant-orbit {
+  animation: elegant-orbit 10s linear infinite;
+}
+
+.animate-royal-pulse {
+  animation: royal-pulse 4s ease-in-out infinite;
+}
+
+.animate-luxury-spin {
+  animation: luxury-spin 20s linear infinite;
+}
+
+.animate-luxury-spin-reverse {
+  animation: luxury-spin-reverse 15s linear infinite;
+}
+
+.animate-diamond-sparkle {
+  animation: diamond-sparkle 1.5s ease-in-out infinite;
+}
+
+.animate-diamond-orbit {
+  animation: diamond-orbit 2s ease-in-out infinite;
+}
+
+.animate-luxury-bounce {
+  animation: luxury-bounce 2s ease-in-out infinite;
+}
+
+.animate-luxury-glow {
+  animation: luxury-glow 3s ease-in-out infinite;
+}
+
+.animate-luxury-flip {
+  animation: luxury-flip 2s ease-in-out;
+}
+
+.animate-luxury-heartbeat {
+  animation: luxury-heartbeat 1.5s ease-in-out infinite;
+}
+
+.animate-luxury-particle {
+  animation: luxury-particle 3s ease-out infinite;
+}
+
+.animate-moonlight {
+  animation: moonlight 5s ease-in-out infinite;
+}
+
+.animate-royal-glow {
+  animation: royal-glow 4s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out;
+}
+
+/* 渐变背景 */
+.bg-gradient-radial {
+  background: radial-gradient(var(--tw-gradient-stops));
+}
+
+/* 边框宽度 */
+.border-3 {
+  border-width: 3px;
+}
+
+/* CURSOR: 改动：彻底优化中文排版，防止标点符号孤立；原因：解决断句和标点符号分离问题 */
+.elegant-chinese-text {
+  /* 中文优雅排版 - 严格防止标点符号孤立 */
+  word-break: keep-all !important; /* 严格保持词语完整 */
+  overflow-wrap: normal !important; /* 禁止强制换行 */
+  white-space: pre-line; /* 保留手动换行符 */
+  line-height: 2.2; /* 增加行高，减少自动换行需求 */
+  letter-spacing: 0.03em;
+  
+  /* 确保居中显示 */
+  text-align: center;
+  display: block;
+  width: 100%;
+  max-width: 90%; /* 限制宽度，减少换行压力 */
+  margin: 0 auto; /* 居中对齐 */
+  
+  /* 禁止所有自动断词 */
+  hyphens: none !important;
+  word-wrap: normal !important;
+  word-spacing: normal;
+  
+  /* 中文标点符号优化 */
+  text-justify: none;
+  hanging-punctuation: none;
+  
+  /* 增强可读性 */
+  font-feature-settings: "kern" 1;
+  text-rendering: optimizeLegibility;
+  
+  /* 柔和的阴影增强立体感 */
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.4), 
+    0 1px 3px rgba(255, 255, 255, 0.15),
+    0 0 20px rgba(255, 255, 255, 0.1);
+    
+  /* 平衡文本布局 */
+  text-wrap: balance;
+}
+
+/* CURSOR: 改动：新增卡片标题样式；原因：专属典藏需要区分卡片名称和描述内容 */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, 
+    #fbbf24 0%,
+    #f59e0b 30%,
+    #ec4899 60%,
+    #a855f7 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: luxury-text-flow 4s ease-in-out infinite;
+  
+  text-shadow: none; /* 移除阴影，让渐变更清晰 */
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  
+  /* 确保标题不换行 */
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.card-description {
+  font-size: 1rem;
+  line-height: 2.2; /* 增加行高，减少换行需求 */
+  color: rgba(255, 255, 255, 0.95);
+  word-break: keep-all !important; /* 严格保持词语完整 */
+  letter-spacing: 0.03em;
+  
+  /* 确保居中显示 */
+  text-align: center;
+  display: block;
+  width: 100%;
+  max-width: 85%; /* 限制宽度，避免强制换行 */
+  margin: 0 auto;
+  
+  /* 严格控制换行 */
+  white-space: pre-line; /* 只保留手动换行符 */
+  overflow-wrap: normal !important; /* 禁止强制换行 */
+  word-wrap: normal !important; /* 禁止强制断词 */
+  hyphens: none !important;
+  
+  /* 标点符号处理 */
+  text-justify: none;
+  hanging-punctuation: none;
+  
+  text-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.3), 
+    0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+/* CURSOR: 改动：优化文字容器；原因：确保有足够空间显示长句子，避免截断 */
+.text-container {
+  padding: 1.5rem 2rem; /* 增加内边距 */
+  min-height: 180px; /* 进一步增加最小高度 */
+  max-height: none; /* 移除高度限制 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  
+  /* 确保内容不溢出 */
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+/* CURSOR: 改动：新增中文标点符号专用规则；原因：彻底防止标点符号孤立显示 */
+.elegant-chinese-text::before,
+.card-description::before {
+  content: "";
+  display: inline-block;
+  width: 0;
+  white-space: nowrap;
+}
+
+/* 防止中文标点符号换行的特殊规则 */
+.elegant-chinese-text,
+.card-description {
+  /* 禁止在这些字符前换行 */
+  text-wrap: balance;
+  
+  /* 强制标点符号跟随前面的字符 */
+  word-spacing: -0.1em;
+  
+  /* 优化中文标点显示 */
+  font-variant-east-asian: full-width;
+  
+  /* 最大宽度限制，减少强制换行 */
+  max-width: 280px;
+  margin: 0 auto; /* 确保居中 */
+}
+
+/* CURSOR: 改动：新增浪漫卡片增强样式；原因：提升卡片的奢华感和浪漫美观度 */
+.romantic-card-enhanced {
+  /* 奢华边框渐变 */
+  background: linear-gradient(45deg, 
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%, 
+    rgba(255, 255, 255, 0.1) 100%);
+  
+  /* 多层阴影增强立体感 */
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 10px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    
+  /* 边框光效 */
+  border: 1px solid;
+  border-image: linear-gradient(45deg, 
+    rgba(251, 191, 36, 0.3),
+    rgba(244, 114, 182, 0.3),
+    rgba(147, 51, 234, 0.3),
+    rgba(251, 191, 36, 0.3)) 1;
+    
+  /* 微妙的变换效果 */
+  transform-style: preserve-3d;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.romantic-card-enhanced:hover {
+  transform: translateY(-5px) rotateX(2deg);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    0 15px 30px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* CURSOR: 改动：新增精美渐变文字效果；原因：让卡片文字更加浪漫精美 */
+.luxury-text-gradient {
+  background: linear-gradient(135deg, 
+    #fbbf24 0%,
+    #f59e0b 25%,
+    #ec4899 50%,
+    #a855f7 75%,
+    #fbbf24 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: luxury-text-flow 6s ease-in-out infinite;
+}
+
+@keyframes luxury-text-flow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* CURSOR: 改动：设计智能中文断句和换行系统；原因：避免词汇被拆分，确保语义完整和排版美观 */
+.love-card-text {
+  /* 中文智能断句核心规则 */
+  word-break: keep-all !important;          /* 保持中文词汇完整 */
+  overflow-wrap: anywhere !important;       /* 允许在任何地方换行，但优先保持词汇完整 */
+  white-space: pre-line !important;         /* 保留手动换行符 */
+  line-break: auto !important;              /* 智能行断点 */
+  
+  /* 完美居中和布局 */
+  text-align: center !important;
+  display: block;
+  width: 100%;
+  max-width: none !important;               /* 移除固定宽度限制 */
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  
+  /* 优化行高和字间距 */
+  line-height: 1.9 !important;              /* 稍微增加行高，提升可读性 */
+  letter-spacing: 0.08em;                   /* 增加字间距，避免过于紧密 */
+  
+  /* 中文标点符号优化 */
+  text-justify: none;
+  hanging-punctuation: none;
+  font-variant-east-asian: full-width;
+  hyphens: none !important;
+  
+  /* CURSOR: 改动：删除text-wrap: balance；原因：该属性会强制重新排版文本，完全忽略手动\n换行符 */
+  /* text-wrap: balance !important;            会忽略手动换行符，必须删除 */
+  
+  /* CURSOR: 改动：防止标点符号换行的CSS规则；原因：从样式层面彻底杜绝标点符号孤立显示 */
+  /* 防止中文标点符号在行首出现 */
+  text-indent: 0;
+  hanging-punctuation: none;
+  
+  /* 确保完全可见 */
+  min-height: auto;
+  max-height: none;
+  box-sizing: border-box;
+  overflow: visible;
+  
+  /* 视觉增强 */
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.4), 
+    0 1px 3px rgba(255, 255, 255, 0.1);
+}
+
+/* CURSOR: 改动：添加中文标点符号禁止换行规则；原因：通过CSS选择器彻底防止标点符号出现在行首 */
+.love-card-text::after {
+  content: '';
+  display: inline;
+  white-space: nowrap;
+}
+
+/* 防止特定标点符号在行首出现 */
+.love-card-text {
+  /* 使用 text-align-last 确保最后一行也居中 */
+  text-align-last: center;
+}
+
+/* 针对中文标点符号的特殊处理 */
+.love-card-text,
+.love-card-text * {
+  /* 禁止在标点符号前换行 */
+  word-break: keep-all;
+  
+  /* 确保标点符号不会独立成行 */
+  orphans: 2;
+  widows: 2;
+}
+
+/* CURSOR: 改动：新增智能断句容器；原因：通过JavaScript处理实现完美的中文断句 */
+.intelligent-text-container {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* CURSOR: 改动：添加中文断句优化规则；原因：针对不同类型的文本内容提供最佳显示效果 */
+.love-card-text.short-text {
+  /* 短文本（1行）优化 */
+  font-size: 1.25rem;
+  line-height: 1.6;
+}
+
+.love-card-text.medium-text {
+  /* 中等文本（2-3行）优化 */
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.love-card-text.long-text {
+  /* 长文本（4行以上）优化 */
+  font-size: 1rem;
+  line-height: 1.9;
+  letter-spacing: 0.06em;
+}
+
+/* CURSOR: 改动：新增浮动光点装饰效果；原因：增加卡片的梦幻感和奢华感 */
+.floating-sparkles {
+  position: relative;
+  overflow: hidden;
+}
+
+.floating-sparkles::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(2px 2px at 20% 30%, rgba(251, 191, 36, 0.8), transparent),
+    radial-gradient(1px 1px at 40% 70%, rgba(244, 114, 182, 0.6), transparent),
+    radial-gradient(1px 1px at 90% 40%, rgba(167, 85, 247, 0.7), transparent),
+    radial-gradient(2px 2px at 60% 20%, rgba(251, 191, 36, 0.5), transparent);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  animation: sparkle-dance 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sparkle-dance {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    opacity: 0.8;
+    transform: scale(1.1) rotate(90deg);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.9) rotate(180deg);
+  }
+  75% {
+    opacity: 0.7;
+    transform: scale(1.05) rotate(270deg);
+  }
+}
